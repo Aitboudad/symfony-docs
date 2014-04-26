@@ -660,6 +660,28 @@ field whose *id* is ``product_name`` (and name is ``product[name]``).
    ``ProductType`` equates to ``product``). If you're not sure what your
    form name is, just view the source of your generated form.
 
+
+.. tip::
+    If you want to change the ``product`` or ``name`` portion of
+    the ``_product_name_widget`` you need to set the ``block_name`` option 
+    in your form type:
+
+    .. code-block:: php
+
+    use Symfony\Component\Form\FormBuilderInterface;
+
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        // ...
+
+        $builder->add('name', 'text', array(
+            'block_name' => 'custom_name'
+        ));
+    }
+
+    The block name can then be ``_product_custom_name_widget``
+
+
 You can also override the markup for an entire field row using the same method:
 
 .. configuration-block::
